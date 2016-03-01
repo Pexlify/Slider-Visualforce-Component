@@ -1,0 +1,31 @@
+<apex:component controller="SliderComponentController">
+    <apex:attribute name="componentId" type="String" assignTo="{!Key}" description="The key given to this component so the page can easily get access to it" required="true"/>
+    <apex:attribute name="apexController" type="PageControllerBase" assignTo="{!pageController}"  required="true" description="The controller for the page." />
+    <apex:attribute name="size" type="Integer" required="true" description="" assignTo="{!ResultsSize}"/>
+    <apex:attribute name="isCheckbox" type="Boolean" required="true" description=""/>
+    <apex:attribute name="fieldLabels" type="String[]" description="" assignTo="{!Labels}"/>
+    <apex:attribute name="defaultValues" type="Boolean[]" description="" assignTo="{!Defaults}"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.SliderComponentResources, 'powerange.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SliderComponentResources, 'powerange.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SliderComponentResources, 'switchery.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SliderComponentResources, 'switchery.js')}"/>
+
+    <apex:actionRegion rendered="{!isCheckbox}">
+        <apex:repeat value="{!Results}" var="result">
+            <div class="switcheryWrapper">
+                <apex:outputText value="{!result.Label}" styleClass="switchCheckboxesLabel" rendered="{!NOT(ISNULL(result.Label))}"/>
+                <apex:inputCheckbox value="{!result.Value}" styleClass="switchCheckboxes"/>
+            </div>
+        </apex:repeat>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var checkBoxInputs = document.getElementsByClassName("switchCheckboxes");
+            for (var i = 0; i <= checkBoxInputs.length; i++){
+                var init = new Switchery(checkBoxInputs[i]);
+            }
+        }
+    </script>
+    </apex:actionRegion> 
+</apex:component>

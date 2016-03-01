@@ -1,0 +1,10 @@
+<apex:page controller="SliderExampleController">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+           <c:SliderComponent componentId="testCompId" size="2" isCheckbox="true" fieldLabels="{!labels}" apexController="{!this}"/>
+            <c:SliderComponent componentId="testCompId2" size="1" isCheckbox="true" apexController="{!this}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>
