@@ -14,6 +14,7 @@ public class SliderComponentController extends ComponentControllerBase {
                 Results.add(new InputCheckboxWrapper());
             }
             setLabels();
+            setDefaults();
         }
 
         return Results;

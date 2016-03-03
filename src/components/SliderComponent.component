@@ -1,31 +1,37 @@
 <apex:component controller="SliderComponentController">
     <apex:attribute name="componentId" type="String" assignTo="{!Key}" description="The key given to this component so the page can easily get access to it" required="true"/>
     <apex:attribute name="apexController" type="PageControllerBase" assignTo="{!pageController}"  required="true" description="The controller for the page." />
-    <apex:attribute name="size" type="Integer" required="true" description="" assignTo="{!ResultsSize}"/>
-    <apex:attribute name="isCheckbox" type="Boolean" required="true" description=""/>
-    <apex:attribute name="fieldLabels" type="String[]" description="" assignTo="{!Labels}"/>
-    <apex:attribute name="defaultValues" type="Boolean[]" description="" assignTo="{!Defaults}"/>
+    <apex:attribute name="size" type="Integer" description="# of sliders on page. Set this if you need more than one slider" default="1" assignTo="{!ResultsSize}"/>
+    <apex:attribute name="fieldLabels" type="String[]" description="Labels to display near slider" assignTo="{!Labels}"/>
+    <apex:attribute name="defaultValues" type="Boolean[]" description="Default Values Assigned To Slider" assignTo="{!Defaults}"/>
+    <apex:attribute name="color" default="#64bd63" type="String" description="Primary Color in hex starting with the # symbol" />
+    <apex:attribute name="secondaryColor" default="#dfdfdf" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="jackColor" default="#fff" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="jackSecondaryColor" default="null" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="disabled" default="false" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="disabledOpacity" default="0.5" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="speed" default="0.4s" type="String" description="Primary Color in hex starting with the # symbol" />
+     <apex:attribute name="sliderSize" default="default" type="String" description="Primary Color in hex starting with the # symbol" />
 
-    <apex:stylesheet value="{!URLFOR($Resource.SliderComponentResources, 'powerange.css')}"/>
-    <apex:includeScript value="{!URLFOR($Resource.SliderComponentResources, 'powerange.js')}"/>
+
     <apex:stylesheet value="{!URLFOR($Resource.SliderComponentResources, 'switchery.css')}"/>
     <apex:includeScript value="{!URLFOR($Resource.SliderComponentResources, 'switchery.js')}"/>
 
-    <apex:actionRegion rendered="{!isCheckbox}">
-        <apex:repeat value="{!Results}" var="result">
-            <div class="switcheryWrapper">
-                <apex:outputText value="{!result.Label}" styleClass="switchCheckboxesLabel" rendered="{!NOT(ISNULL(result.Label))}"/>
-                <apex:inputCheckbox value="{!result.Value}" styleClass="switchCheckboxes"/>
-            </div>
-        </apex:repeat>
+    <apex:repeat value="{!Results}" var="result">
+        <div class="switcheryWrapper">
+            <apex:outputText value="{!result.Label}" styleClass="switchCheckboxesLabel" rendered="{!NOT(ISNULL(result.Label))}"/>
+            <apex:inputCheckbox value="{!result.Value}" styleClass="switchCheckboxes{!Key}"/>
+        </div>
+    </apex:repeat>
 
     <script type="text/javascript">
-        window.onload = function () {
-            var checkBoxInputs = document.getElementsByClassName("switchCheckboxes");
+        window.addEventListener('load',function () {
+            var styleClass = "switchCheckboxes" + "{!Key}";
+            console.log('1');
+            var checkBoxInputs = document.getElementsByClassName(styleClass);
             for (var i = 0; i <= checkBoxInputs.length; i++){
-                var init = new Switchery(checkBoxInputs[i]);
+                var init = new Switchery(checkBoxInputs[i], {color : '{!color}', secondaryColor : '{!secondaryColor}' , jackColor : '{!jackColor}', jackSecondaryColor: '{!jackSecondaryColor}', disabled: {!disabled}, disabledOpacity : {!disabledOpacity}, speed : '{!speed}', size : '{!sliderSize}'});
             }
-        }
+        });
     </script>
-    </apex:actionRegion> 
 </apex:component>

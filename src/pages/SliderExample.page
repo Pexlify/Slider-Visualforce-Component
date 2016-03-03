@@ -1,9 +1,11 @@
 <apex:page controller="SliderExampleController">
     <apex:form >
     <apex:pageBlock >
-        <apex:pageBlockSection >
-           <c:SliderComponent componentId="testCompId" size="2" isCheckbox="true" fieldLabels="{!labels}" apexController="{!this}"/>
-            <c:SliderComponent componentId="testCompId2" size="1" isCheckbox="true" apexController="{!this}"/>
+        <apex:pageBlockSection > 
+           <c:SliderComponent componentId="inputCheckboxesComponent" size="4"  fieldLabels="{!labels}" apexController="{!this}" defaultValues="{!defaults}" sliderSize="large" speed="0.1s"/>
+           <c:SliderComponent componentId="inputCheckboxComponent" apexController="{!this}" color="#ff00ff" disabled="true"/> 
+           <c:SliderComponent componentId="inputCheckboxesComponent2" size="4"  fieldLabels="{!labels}" apexController="{!this}" defaultValues="{!defaults}" color="#ffff12" jackColor="#aa02aa" jackSecondaryColor="#EEE000"/>
+           <c:SliderComponent componentId="inputCheckboxesComponent3" size="4"  fieldLabels="{!labels}" apexController="{!this}" color="#12ff12" secondaryColor="#ff2fee" sliderSize="small" speed="0.9s"/> 
         </apex:pageBlockSection>
     </apex:pageBlock>
     </apex:form>
