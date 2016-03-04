@@ -47,5 +47,9 @@ public class SliderComponentController extends ComponentControllerBase {
     public class InputCheckboxWrapper {
         public Boolean Value {get; set;}
         public String Label {get; set;}
+
+        public InputCheckboxWrapper() {
+            Value = false;
+        }
     } 
 }
