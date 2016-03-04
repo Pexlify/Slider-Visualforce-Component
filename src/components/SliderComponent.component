@@ -1,17 +1,17 @@
 <apex:component controller="SliderComponentController">
     <apex:attribute name="componentId" type="String" assignTo="{!Key}" description="The key given to this component so the page can easily get access to it" required="true"/>
     <apex:attribute name="apexController" type="PageControllerBase" assignTo="{!pageController}"  required="true" description="The controller for the page." />
-    <apex:attribute name="size" type="Integer" description="# of sliders on page. Set this if you need more than one slider" default="1" assignTo="{!ResultsSize}" required="true"/>
+    <apex:attribute name="size" type="Integer" description="# of sliders on page. Set this if you need more than one slider" default="1" assignTo="{!ResultsSize}"/>
     <apex:attribute name="fieldLabels" type="String[]" description="Labels to display near slider" assignTo="{!Labels}"/>
     <apex:attribute name="defaultValues" type="Boolean[]" description="Default Values Assigned To Slider" assignTo="{!Defaults}"/>
     <apex:attribute name="color" default="#64bd63" type="String" description="Primary color of slider background (when it's on) in hex starting with the '#' character" />
     <apex:attribute name="secondaryColor" default="#dfdfdf" type="String" description="Secondary color of slider background (when it's off) in hex starting with the '#' character" />
-     <apex:attribute name="jackColor" default="#fff" type="String" description="Primary color of slider jack in hex starting with the '#' character" />
-     <apex:attribute name="jackSecondaryColor" default="null" type="String" description="Secondary color of slider jack in hex starting with the '#' character"/>
-     <apex:attribute name="disabled" default="false" type="String" description="Valid values are true and false - set as true only if you need to show disabled slider"/>
-     <apex:attribute name="disabledOpacity" default="0.5" type="String" description="Opacity of disabled slider - only use when disabled=true" />
-     <apex:attribute name="speed" default="0.4s" type="String" description="Speed of animation in seconds. Valid format is #.#s, where '#' is a number" />
-     <apex:attribute name="sliderSize" default="default" type="String" description="Size of the slider component. Available options are default, small, large" />
+    <apex:attribute name="jackColor" default="#fff" type="String" description="Primary color of slider jack in hex starting with the '#' character" />
+    <apex:attribute name="jackSecondaryColor" default="null" type="String" description="Secondary color of slider jack in hex starting with the '#' character"/>
+    <apex:attribute name="disabled" default="false" type="String" description="Valid values are true and false - set as true only if you need to show disabled slider"/>
+    <apex:attribute name="disabledOpacity" default="0.5" type="String" description="Opacity of disabled slider - only use when disabled=true" />
+    <apex:attribute name="speed" default="0.4s" type="String" description="Speed of animation in seconds. Valid format is #.#s, where '#' is a number" />
+    <apex:attribute name="sliderSize" default="default" type="String" description="Size of the slider component. Available options are default, small, large" />
 
 
     <apex:stylesheet value="{!URLFOR($Resource.SliderComponentResources, 'switchery.css')}"/>
